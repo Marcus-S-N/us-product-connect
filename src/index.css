@@ -2,86 +2,105 @@
 @tailwind components;
 @tailwind utilities;
 
-/* US to Vietnam Service - Clean, Trustworthy Design System */
+/* Liquid Glass E-Commerce Design System */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 220 20% 15%;
+    /* Soft pink/coral gradient palette - liquid glass inspired */
+    --background: 20 30% 98%;
+    --foreground: 240 10% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 20% 15%;
+    --card-foreground: 240 10% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 15%;
+    --popover-foreground: 240 10% 15%;
 
-    /* Deep Navy - Trust & Professionalism */
-    --primary: 220 60% 25%;
+    /* Soft coral pink - main accent */
+    --primary: 350 70% 65%;
     --primary-foreground: 0 0% 100%;
 
-    /* Light Gray Background */
-    --secondary: 220 15% 96%;
-    --secondary-foreground: 220 20% 15%;
+    /* Light blush background */
+    --secondary: 350 30% 95%;
+    --secondary-foreground: 240 10% 15%;
 
-    --muted: 220 15% 94%;
-    --muted-foreground: 220 10% 45%;
+    --muted: 350 20% 94%;
+    --muted-foreground: 240 10% 45%;
 
-    /* Warm Coral Accent */
-    --accent: 15 85% 55%;
+    /* Warm coral accent */
+    --accent: 15 85% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 88%;
-    --input: 220 15% 88%;
-    --ring: 220 60% 25%;
+    --border: 350 20% 88%;
+    --input: 350 20% 90%;
+    --ring: 350 70% 65%;
 
-    --radius: 0.5rem;
+    --radius: 1.25rem;
 
-    /* Trust badge colors */
-    --success: 150 60% 40%;
+    /* Success - soft teal */
+    --success: 160 50% 45%;
     --success-foreground: 0 0% 100%;
 
+    /* Glassmorphism tokens */
+    --glass-bg: 350 40% 98%;
+    --glass-border: 350 30% 90%;
+    --glass-shadow: 350 60% 70%;
+    
+    /* Gradient colors */
+    --gradient-start: 350 80% 85%;
+    --gradient-mid: 20 80% 85%;
+    --gradient-end: 350 70% 75%;
+
     /* Section backgrounds */
-    --section-alt: 220 20% 98%;
+    --section-alt: 350 25% 97%;
   }
 
   .dark {
-    --background: 220 25% 10%;
-    --foreground: 220 15% 95%;
+    --background: 240 20% 8%;
+    --foreground: 350 20% 95%;
 
-    --card: 220 25% 12%;
-    --card-foreground: 220 15% 95%;
+    --card: 240 20% 12%;
+    --card-foreground: 350 20% 95%;
 
-    --popover: 220 25% 12%;
-    --popover-foreground: 220 15% 95%;
+    --popover: 240 20% 12%;
+    --popover-foreground: 350 20% 95%;
 
-    --primary: 220 50% 60%;
-    --primary-foreground: 220 25% 10%;
+    --primary: 350 65% 60%;
+    --primary-foreground: 240 20% 8%;
 
-    --secondary: 220 20% 18%;
-    --secondary-foreground: 220 15% 95%;
+    --secondary: 240 15% 18%;
+    --secondary-foreground: 350 20% 95%;
 
-    --muted: 220 20% 18%;
-    --muted-foreground: 220 10% 60%;
+    --muted: 240 15% 18%;
+    --muted-foreground: 350 15% 60%;
 
-    --accent: 15 85% 55%;
+    --accent: 15 80% 55%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62% 30%;
+    --destructive: 0 62% 40%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 20% 20%;
-    --input: 220 20% 20%;
-    --ring: 220 50% 60%;
+    --border: 240 15% 22%;
+    --input: 240 15% 22%;
+    --ring: 350 65% 60%;
 
-    --success: 150 50% 45%;
+    --success: 160 45% 40%;
     --success-foreground: 0 0% 100%;
 
-    --section-alt: 220 25% 8%;
+    --glass-bg: 240 20% 15%;
+    --glass-border: 240 15% 25%;
+    --glass-shadow: 350 50% 30%;
+    
+    --gradient-start: 350 60% 25%;
+    --gradient-mid: 20 60% 25%;
+    --gradient-end: 350 50% 20%;
+
+    --section-alt: 240 20% 6%;
   }
 }
 
@@ -97,6 +116,13 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Inter', system-ui, sans-serif;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--gradient-start) / 0.3) 0%,
+      hsl(var(--background)) 50%,
+      hsl(var(--gradient-mid) / 0.2) 100%
+    );
+    min-height: 100vh;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -110,6 +136,140 @@
   }
 
   .container-narrow {
-    @apply max-w-5xl mx-auto;
+    @apply max-w-6xl mx-auto;
   }
+
+  /* Liquid Glass Effects */
+  .glass {
+    @apply relative overflow-hidden;
+    background: hsl(var(--glass-bg) / 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--glass-border) / 0.5);
+    box-shadow: 
+      0 8px 32px hsl(var(--glass-shadow) / 0.15),
+      inset 0 1px 0 hsl(0 0% 100% / 0.2);
+  }
+
+  .glass-card {
+    @apply glass rounded-3xl;
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300;
+  }
+
+  .glass-card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+      0 20px 40px hsl(var(--glass-shadow) / 0.2),
+      inset 0 1px 0 hsl(0 0% 100% / 0.3);
+  }
+
+  .glass-button {
+    @apply glass rounded-full px-6 py-3 font-medium transition-all duration-300;
+  }
+
+  .glass-button:hover {
+    background: hsl(var(--glass-bg) / 0.9);
+    box-shadow: 
+      0 12px 24px hsl(var(--glass-shadow) / 0.2),
+      inset 0 1px 0 hsl(0 0% 100% / 0.3);
+  }
+
+  .glass-input {
+    @apply glass rounded-2xl px-4 py-3 w-full outline-none transition-all duration-200;
+    border: 1px solid hsl(var(--glass-border) / 0.5);
+  }
+
+  .glass-input:focus {
+    border-color: hsl(var(--primary) / 0.5);
+    box-shadow: 0 0 0 3px hsl(var(--primary) / 0.1);
+  }
+
+  /* Gradient backgrounds */
+  .gradient-bg {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--gradient-start)) 0%,
+      hsl(var(--gradient-mid)) 50%,
+      hsl(var(--gradient-end)) 100%
+    );
+  }
+
+  .gradient-text {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--accent)) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Blob decorations */
+  .blob {
+    @apply absolute rounded-full opacity-60 blur-3xl;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary) / 0.4),
+      hsl(var(--accent) / 0.3)
+    );
+  }
+
+  /* Product card specific */
+  .product-card {
+    @apply glass-card-hover p-4 flex flex-col;
+  }
+
+  .product-image {
+    @apply rounded-2xl overflow-hidden bg-gradient-to-br from-secondary to-muted aspect-square flex items-center justify-center;
+  }
+
+  /* Cart badge */
+  .cart-badge {
+    @apply absolute -top-2 -right-2 w-5 h-5 rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center;
+  }
+
+  /* Rating stars */
+  .star-filled {
+    @apply text-amber-400;
+  }
+
+  .star-empty {
+    @apply text-muted-foreground/30;
+  }
+
+  /* Quantity controls */
+  .qty-button {
+    @apply w-8 h-8 rounded-full glass flex items-center justify-center transition-all hover:bg-primary/10;
+  }
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 4s ease-in-out infinite;
 }

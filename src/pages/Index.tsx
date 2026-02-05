@@ -1,219 +1,182 @@
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { ProductCard } from "@/components/product/ProductCard";
+import { CategoryCard } from "@/components/product/CategoryCard";
+import { categories, getFeaturedProducts, products } from "@/data/products";
 import {
-  Pill,
-  Shirt,
-  Sparkles,
-  Heart,
   ShieldCheck,
   DollarSign,
   Package,
-  MessageCircle,
-  Phone,
   ArrowRight,
+  Sparkles,
+  Truck,
 } from "lucide-react";
-
-const categories = [
-  {
-    icon: Pill,
-    title: "OTC Medicine",
-    description: "Over-the-counter medications from trusted US pharmacies",
-  },
-  {
-    icon: Heart,
-    title: "Supplements",
-    description: "Vitamins, minerals, and health supplements",
-  },
-  {
-    icon: Shirt,
-    title: "Clothing & Shoes",
-    description: "Fashion from popular US brands and retailers",
-  },
-  {
-    icon: Sparkles,
-    title: "Cosmetics",
-    description: "Skincare, makeup, and beauty products",
-  },
-];
-
-const steps = [
-  {
-    number: "1",
-    title: "Send Product Link",
-    description: "Share the link to the product you want to order",
-  },
-  {
-    number: "2",
-    title: "We Purchase in the US",
-    description: "Our team buys the authentic product from US retailers",
-  },
-  {
-    number: "3",
-    title: "Deliver to Vietnam",
-    description: "We ship directly to your address in Vietnam",
-  },
-];
 
 const trustPoints = [
   {
     icon: ShieldCheck,
-    title: "US-Based Purchasing",
-    description: "Products sourced directly from legitimate US retailers",
+    title: "Authentic Products",
+    description: "100% genuine from US retailers",
   },
   {
     icon: Package,
-    title: "Authentic Products",
-    description: "100% genuine items with original packaging",
+    title: "US-Based Purchasing",
+    description: "Direct from trusted sources",
   },
   {
     icon: DollarSign,
     title: "Transparent Pricing",
-    description: "Clear breakdown of costs with no hidden fees",
+    description: "No hidden fees, ever",
+  },
+  {
+    icon: Truck,
+    title: "Fast Delivery",
+    description: "7-14 days to Vietnam",
   },
 ];
 
 export default function Index() {
+  const featuredProducts = getFeaturedProducts();
+  const newArrivals = products.slice(0, 8);
+
   return (
     <Layout>
+      {/* Decorative blobs */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+        <div className="blob w-96 h-96 -top-48 -right-48 animate-float" />
+        <div className="blob w-80 h-80 top-1/3 -left-40 animate-float" style={{ animationDelay: "2s" }} />
+        <div className="blob w-64 h-64 bottom-1/4 right-1/4 animate-pulse-soft" style={{ animationDelay: "4s" }} />
+      </div>
+
       {/* Hero Section */}
-      <section className="section-padding bg-primary text-primary-foreground">
-        <div className="container-narrow mx-auto text-center">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Buy Authentic US Products,
-            <br />
-            Delivered to Vietnam
-          </h1>
-          <p className="text-lg md:text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-            We help customers in Vietnam order US medicine, supplements, clothing, and cosmetics.
-          </p>
-          <Button
-            asChild
-            size="lg"
-            className="bg-accent hover:bg-accent/90 text-accent-foreground"
-          >
-            <Link to="/request-order">
-              Request an Order
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </Button>
-        </div>
-      </section>
-
-      {/* What You Can Order */}
-      <section className="section-padding">
+      <section className="section-padding pt-12 pb-20">
         <div className="container-narrow mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
-            What You Can Order
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {categories.map((category) => (
-              <Card key={category.title} className="text-center border-border">
-                <CardContent className="pt-6">
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-4">
-                    <category.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <h3 className="font-semibold mb-2">{category.title}</h3>
-                  <p className="text-sm text-muted-foreground">
-                    {category.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works Summary */}
-      <section className="section-padding bg-section-alt">
-        <div className="container-narrow mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
-            How It Works
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            {steps.map((step) => (
-              <div key={step.number} className="text-center">
-                <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold mb-4">
-                  {step.number}
-                </div>
-                <h3 className="font-semibold mb-2">{step.title}</h3>
-                <p className="text-sm text-muted-foreground">{step.description}</p>
+          <div className="glass-card p-8 md:p-12 lg:p-16 text-center relative overflow-hidden">
+            {/* Inner gradient blob */}
+            <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-gradient-to-br from-primary/30 to-accent/20 blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-gradient-to-tr from-accent/20 to-primary/30 blur-3xl" />
+            
+            <div className="relative z-10">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+                <Sparkles className="w-4 h-4" />
+                Authentic US Products
               </div>
-            ))}
-          </div>
-          <div className="text-center">
-            <Link
-              to="/how-it-works"
-              className="text-primary font-medium hover:underline inline-flex items-center gap-1"
-            >
-              View details
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+              
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                Shop US Brands,
+                <br />
+                <span className="gradient-text">Delivered to Vietnam</span>
+              </h1>
+              <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+                Medicine, supplements, fashion, and cosmetics from trusted American retailers.
+                Fast shipping. Authentic guaranteed.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Button asChild size="lg" className="rounded-full px-8">
+                  <Link to="/category/medicine">
+                    Start Shopping
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="rounded-full glass-button">
+                  <Link to="/request-order">Request Custom Item</Link>
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Why Trust Us */}
-      <section className="section-padding">
+      {/* Categories */}
+      <section className="section-padding py-12">
         <div className="container-narrow mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
-            Why Trust Us
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {trustPoints.map((point) => (
-              <div key={point.title} className="flex gap-4">
-                <div className="flex-shrink-0">
-                  <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-success/10">
-                    <point.icon className="h-5 w-5 text-success" />
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold">Shop by Category</h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {categories.map((category) => (
+              <CategoryCard key={category.id} category={category} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Products */}
+      <section className="section-padding py-12">
+        <div className="container-narrow mx-auto">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold">Featured Products</h2>
+            <Link
+              to="/category/supplements"
+              className="text-sm text-primary font-medium hover:underline inline-flex items-center gap-1"
+            >
+              View All
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {featuredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* New Arrivals */}
+      <section className="section-padding py-12">
+        <div className="container-narrow mx-auto">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold">New Arrivals</h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {newArrivals.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Points */}
+      <section className="section-padding py-12">
+        <div className="container-narrow mx-auto">
+          <div className="glass-card p-8 md:p-10">
+            <h2 className="text-2xl font-bold text-center mb-8">Why Shop With Us</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {trustPoints.map((point) => (
+                <div key={point.title} className="text-center">
+                  <div className="w-14 h-14 rounded-2xl mx-auto mb-3 flex items-center justify-center bg-gradient-to-br from-primary/20 to-accent/20">
+                    <point.icon className="w-7 h-7 text-primary" />
                   </div>
-                </div>
-                <div>
                   <h3 className="font-semibold mb-1">{point.title}</h3>
                   <p className="text-sm text-muted-foreground">{point.description}</p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="section-padding bg-primary text-primary-foreground">
-        <div className="container-narrow mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            Ready to Order?
-          </h2>
-          <p className="text-lg opacity-90 mb-8">
-            Submit your order request and we'll get back to you within 24 hours.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button
-              asChild
-              size="lg"
-              className="bg-accent hover:bg-accent/90 text-accent-foreground"
-            >
-              <Link to="/request-order">Request an Order</Link>
-            </Button>
-            <div className="flex items-center gap-4">
-              <a
-                href="https://zalo.me/your-zalo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground"
-              >
-                <MessageCircle className="h-5 w-5" />
-                Zalo
-              </a>
-              <a
-                href="https://wa.me/your-whatsapp"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground"
-              >
-                <Phone className="h-5 w-5" />
-                WhatsApp
-              </a>
+      {/* CTA Section */}
+      <section className="section-padding py-16">
+        <div className="container-narrow mx-auto">
+          <div className="glass-card p-8 md:p-12 text-center relative overflow-hidden">
+            <div className="absolute inset-0 gradient-bg opacity-20" />
+            <div className="relative z-10">
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">
+                Can't Find What You're Looking For?
+              </h2>
+              <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
+                Send us a link to any US product and we'll get it for you.
+                Medicine, supplements, clothing, cosmetics - anything you need!
+              </p>
+              <Button asChild size="lg" className="rounded-full px-8">
+                <Link to="/request-order">
+                  Request Custom Item
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
