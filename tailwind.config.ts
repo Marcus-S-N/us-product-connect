@@ -15,17 +15,20 @@ export default {
   	extend: {
   		fontFamily: {
   			sans: [
-  				'Poppins',
+  				'Source Sans Pro',
   				'ui-sans-serif',
   				'system-ui',
-  				'sans-serif',
-  				'Apple Color Emoji',
-  				'Segoe UI Emoji',
-  				'Segoe UI Symbol',
-  				'Noto Color Emoji'
+  				'-apple-system',
+  				'BlinkMacSystemFont',
+  				'Segoe UI',
+  				'Roboto',
+  				'Helvetica Neue',
+  				'Arial',
+  				'Noto Sans',
+  				'sans-serif'
   			],
   			serif: [
-  				'Merriweather',
+  				'Source Serif Pro',
   				'ui-serif',
   				'Georgia',
   				'Cambria',
@@ -34,7 +37,7 @@ export default {
   				'serif'
   			],
   			mono: [
-  				'JetBrains Mono',
+  				'Source Code Pro',
   				'ui-monospace',
   				'SFMono-Regular',
   				'Menlo',
@@ -105,7 +108,14 @@ export default {
   		},
   		boxShadow: {
   			glass: '0 8px 32px hsl(var(--glass-shadow) / 0.15), inset 0 1px 0 hsl(0 0% 100% / 0.2)',
-  			'glass-lg': '0 20px 40px hsl(var(--glass-shadow) / 0.2), inset 0 1px 0 hsl(0 0% 100% / 0.3)'
+  			'glass-lg': '0 20px 40px hsl(var(--glass-shadow) / 0.2), inset 0 1px 0 hsl(0 0% 100% / 0.3)',
+  			'2xs': 'var(--shadow-2xs)',
+  			xs: 'var(--shadow-xs)',
+  			sm: 'var(--shadow-sm)',
+  			md: 'var(--shadow-md)',
+  			lg: 'var(--shadow-lg)',
+  			xl: 'var(--shadow-xl)',
+  			'2xl': 'var(--shadow-2xl)'
   		},
   		backdropBlur: {
   			glass: '20px'
